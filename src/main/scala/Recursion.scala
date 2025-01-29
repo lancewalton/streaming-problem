@@ -10,12 +10,10 @@ object Recursion extends IOApp.Simple {
 
   private def readSse: Stream[IO, Int] = {
     def reconnect(connectionParameters: Int): Stream[IO, Int] =
-      for {
-        messageStream <- clientStream.pull.uncons.flatMap {
-          case Some((c, s)) => ??? // We do interesting stuff here, but it's not relevant for this example
-          case None         => (Stream.sleep_[IO](1.millis) ++ reconnect(connectionParameters + 1)).pull.echo
-        }.stream
-      } yield messageStream
+      clientStream.pull.uncons.flatMap {
+        case Some((c, s)) => ??? // We do interesting stuff here, but it's not relevant for this example
+        case None         => (Stream.sleep_[IO](1.millis) ++ reconnect(connectionParameters + 1)).pull.echo
+      }.stream
 
     reconnect(0)
   }
