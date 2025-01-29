@@ -4,7 +4,7 @@ some unsuccessful attempts to avoid the memory leak, but my guess is we're doing
 
 We'd appreciate your help.
 
-There are three source files in this project:
+There is one source file in this project:
 
 # streaming.Recursion
 
@@ -25,7 +25,7 @@ Here is a graph of the memory usage over time:
 
 ![](Recursion.png)
 
-I'm assuming I'm doing something wrong. If anybody can tell me what is is, I'd be grateful.
+I'm assuming we're doing something wrong. If anybody can tell me what is is, I'd be grateful.
 
 I've used the fs2 and cats-effect versions that are in use in the production code I'm working on.
 But I have tried updating them in this project and it doesn't make a difference.
