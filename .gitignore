@@ -1,0 +1,7 @@
+/.idea/
+/.bloop/
+/.bsp/
+/target/
+/project/.bloop/
+/project/project/
+/project/target/
