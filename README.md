@@ -1,3 +1,5 @@
+(Note: We have found a solution to this problem. See the "Solution" section if you are interested)
+
 We're having a memory leak problem with a recursion involving fs2.Stream and we don't know
 how to fix it. We've isolated the problem and produced an example in this project. We've made
 some unsuccessful attempts to avoid the memory leak, but my guess is we're doing something wrong.
@@ -29,3 +31,15 @@ I'm assuming we're doing something wrong. If anybody can tell me what is is, I'd
 
 I've used the fs2 and cats-effect versions that are in use in the production code I'm working on.
 But I have tried updating them in this project and it doesn't make a difference.
+
+# Solution
+
+The problem was that we were converting the `Pull` back into a `Stream` and then recursing.
+If the recursion returns the `Pull` and then the conversion to a `Stream` happens right at the
+end, the memory leak goes away.
+
+See `streaming.RecursionSolution` for the non-leaky code.
+
+And here is a graph of the memory usage over time:
+
+![](RecursionSolution.png)
